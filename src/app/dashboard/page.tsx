@@ -5,14 +5,8 @@ import { QuoteWidget } from "@/components/widgets/QuoteWidget";
 import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
-  const [dateTime, setDateTime] = useState(new Date());
   const [weather, setWeather] = useState<any>(null);
   const [location, setLocation] = useState({ lat: 0, lon: 0 });
-
-  useEffect(() => {
-    const interval = setInterval(() => setDateTime(new Date()), 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -36,6 +30,7 @@ export default function DashboardPage() {
       fetch(weatherUrl)
         .then((response) => response.json())
         .then((data) => {
+          console.log("Weather data: ", data);
           setWeather(data);
         })
         .catch((error) => {
@@ -47,9 +42,7 @@ export default function DashboardPage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <WeatherWidget weather={weather} />
-
       <QuoteWidget />
-      {/* outros widgets aqui */}
     </div>
   );
 }
