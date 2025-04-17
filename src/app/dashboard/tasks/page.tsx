@@ -332,7 +332,6 @@ export default function TasksPage() {
                 task.completed ? "opacity-50 line-through" : ""
               } ${isOverdue ? "bg-yellow-100 text-black" : ""}`} // Adiciona text-black se estiver em alerta
               style={{ borderLeft: `8px solid ${task.color}` }}
-              onClick={() => handleExpandText(task.id)} // Abre o modal ao clicar no card
             >
               {/* Linha divisória central */}
               <div
@@ -378,7 +377,10 @@ export default function TasksPage() {
                       {task.title}
                     </h3>
                   </div>
-                  <div className="relative text-sm mt-4 h-full max-h-24 overflow-hidden">
+                  <div
+                    onClick={() => handleExpandText(task.id)} // Abre o modal ao clicar no card
+                    className="relative text-sm mt-4 h-full max-h-24 overflow-hidden cursor-pointer"
+                  >
                     <p className="break-words">{task.description}</p>
                     <span
                       className={`
