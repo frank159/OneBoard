@@ -79,7 +79,7 @@ export const WeatherWidget = ({ weather }: WeatherWidgetProps) => {
       </div>
       <div className="flex gap-4 items-center">
         <Icon className="w-12 h-12 text-yellow-400" />
-        <div className="text-sm">
+        <div className="text-2sm text-white">
           <p>
             🌡️ Temp: {weather?.main.temp}°C (Sensação: {weather?.main.feels_like}°C)
           </p>
