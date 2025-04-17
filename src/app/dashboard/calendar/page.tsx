@@ -73,8 +73,11 @@ export default function CalendarView() {
           selectable={false}
           events={calendarEvents}
           eventContent={(arg) => {
+            const task = arg.event.extendedProps.task as Task;
             const bg = arg.event.backgroundColor as string;
             const color = getContrastColor(bg);
+            const isCompleted = task.completed;
+
             return (
               <div
                 style={{
@@ -84,7 +87,27 @@ export default function CalendarView() {
                   borderRadius: "4px",
                 }}
               >
-                <b>{arg.timeText}</b> {arg.event.title}
+                <b>{arg.timeText}</b>{" "}
+                <span
+                  style={{
+                    textDecoration: isCompleted ? "line-through" : "none",
+                  }}
+                >
+                  {arg.event.title}
+                </span>
+                <span
+                  className="ml-2 text-green-900"
+                  style={{
+                    textShadow: `
+                      -1px -1px 0 #fff,
+                      1px -1px 0 #fff,
+                      -1px  1px 0 #fff,
+                      1px  1px 0 #fff
+                    `,
+                  }}
+                >
+                  ✓
+                </span>
               </div>
             );
           }}

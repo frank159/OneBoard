@@ -35,7 +35,7 @@ export const Sidebar = () => {
   ];
 
   const handleProfileClick = () => {
-    router.push("/dashboard/profile");
+    router.push("/profile");
   };
 
   return (
@@ -75,24 +75,26 @@ export const Sidebar = () => {
         ))}
       </nav>
 
-      {/* Footer com avatar */}
+      {/* Card do usuário */}
       <div
         onClick={handleProfileClick}
         className={cn(
-          "mt-auto p-4 border-t border-border flex items-center gap-3 cursor-pointer hover:bg-muted transition",
+          "m-4 p-3 rounded-xl cursor-pointer hover:bg-muted transition flex items-center gap-3",
           isCollapsed ? "justify-center" : "justify-start"
         )}
       >
         {user.picture && (
           <Image
             src={user.picture}
-            alt="Avatar do usuário"
-            width={32}
-            height={32}
+            alt="User Avatar"
+            width={40}
+            height={40}
             className="rounded-full"
           />
         )}
-        {!isCollapsed && <span className="text-sm font-medium">{user.name}</span>}
+        {!isCollapsed && user.name && (
+          <span className="text-sm font-medium truncate">{user.name}</span>
+        )}
       </div>
     </aside>
   );
